@@ -1,9 +1,10 @@
-import { Children } from "react"
+import React from "react";
 
 interface PersonBio {
       name: string,
        email: string,
-       occupation?: string
+       occupation?: string,
+       children?: React.ReactNode
 }
 
 const PersonBio = (props:PersonBio )=>{
@@ -16,7 +17,7 @@ const PersonBio = (props:PersonBio )=>{
             <p> person email {email}</p>
             { occupation?(<p> person occupation is {occupation} </p>):(<p>occupation not defied</p>) }
         
-        <div>{Children}</div>
+        {props.children}
         </>
     )
 }

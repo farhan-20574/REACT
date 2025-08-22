@@ -5,12 +5,12 @@ function App() {
   return (
     <>
       <PersonBio name="Farhan" email="yahoo@msn.com" occupation="Sales">
-        <p>My hobbies are:</p>
         <ul>
           <li>Reading</li>
           <li>Traveling</li>
           <li>Gaming</li>
         </ul>
+
       </PersonBio>
     </>
   );
