@@ -1,22 +1,28 @@
-import { useEffect } from "react"
-import { useState } from "react"
+// import { useEffect } from "react"
+// import { useState } from "react"
+// import useApi from "../hooks/useApi"
+
+import useApi from "../hooks/useApi"
 
 const Blogs = () => {
 
-    const [posts, setPosts] = useState([])
+    // const [posts, setPosts] = useState([])
 
 
-    const getData = async () => {
-        const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-        const data = await res.json()
+    // const getData = async () => {
+    //     const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+    //     const data = await res.json()
 
-        // console.log('data', data)
-        setPosts(data)
-    }
+    //     // console.log('data', data)
+    //     setPosts(data)
+    // }
+    // console.log('post', posts)
+    // useEffect(() => {
+    //     getData()
+    // }, [])
+    const { posts } = useApi()
+
     console.log('post', posts)
-    useEffect(() => {
-        getData()
-    }, [])
 
     return (
         <div>
