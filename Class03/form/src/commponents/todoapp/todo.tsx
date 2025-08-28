@@ -1,20 +1,62 @@
+import { useState, type ChangeEvent, type FormEvent } from 'react'
 import './index.css'
 
-const Todo = () => {
-  return (
-    <div className="todo-container">
-      <form className="todo-form">
-        <label htmlFor="task">Add a New Task</label>
-        <input type="text" id="task" placeholder="What do you want to do" />
-        <button type="submit">Submit</button>
-      </form>
 
+
+const Todo = () => {
+
+  const [task, setTask] = useState('')
+  const [todos, setTodos] = useState([
+    'Go to gym',
+    'Buy a new laptop',
+    'Finish the React App'
+  ])
+
+
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTask(event?.target.value)
+  }
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!task.trim()) {
+      return
+    }
+    setTodos([...todos, task])
+    setTask('')
+  }
+
+  const onDeleteTask = (text: string) => {
+    const deleteTodo = todos.filter((todo) => todo !== text)
+    setTodos(deleteTodo)
+  }
+
+}
+
+return (
+  <div className="todo-container">
+    <form className="todo-form" onSubmit={onSubmit}>
+      <label htmlFor="task">Add a New Task</label>
+      <input
+        type="text"
+        id="task"
+        value={task}
+        onChange={onChange}
+        placeholder="What do you want to do" />
+      <button type="submit">Submit</button>
+    </form>
+
+    {todos.length > 0 ? (
       <ul className="todo-list">
-        <li>Go to gym</li>
-        <li>Buy a new laptop</li>
-        <li>Finish the React App</li>
+        {todos.map((todo) => (
+          <li>
+            {todo}<button onClick={() => onDeleteTask(todo)}>Delete</button>
+          </li>
+        ))}
       </ul>
-    </div>
+  </div>): (
+  <p>Please add some task</p>
+)
+   
   )
 }
 
